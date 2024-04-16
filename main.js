@@ -52,16 +52,30 @@ scene.add(stairObject);
 scene.add(columnObject);
 
 // Angle 표현할 DOM 지정
+const azimuthalInfo = document.querySelector("#azimuthal-info");
 const angleInfo = document.querySelector("#angle-info");
+const xPosInfo = document.querySelector("#x-pos");
+const yPosInfo = document.querySelector("#y-pos");
+const zPosInfo = document.querySelector("#z-pos");
 
 // Animation
 function animate() {
   requestAnimationFrame(animate);
 
-  object.rotation.x += 0.01;
+  // object.rotation.x += 0.01;
   controls.update();
+
   const azimuthalAngle = controls.getAzimuthalAngle();
-  angleInfo.textContent = `Azimuthal Angle: ${azimuthalAngle}`;
+  azimuthalInfo.textContent = `Azimuthal Angle(rad): ${azimuthalAngle}`;
+  const angle = controls.getAzimuthalAngle() * (180 / Math.PI);
+  angleInfo.textContent = `Angle(deg): ${angle}`;
+
+  const xPos = camera.position.x;
+  const yPos = camera.position.y;
+  const zPos = camera.position.z;
+  xPosInfo.textContent = `x: ${xPos}`;
+  yPosInfo.textContent = `y: ${yPos}`;
+  zPosInfo.textContent = `z: ${zPos}`;
 
   renderer.render(scene, camera);
 }
