@@ -211,7 +211,6 @@ function spin(object) {
       ease: "none", // 애니메이션의 이징(가속도) 설정
       onComplete: () => {
         object.spinned = true;
-        console.log(object.spinned);
       },
     }
   );
